@@ -1,0 +1,48 @@
+﻿@using Umbraco.Cms.Core.PublishedCache
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Cms.Core.Services.Navigation
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject IVariationContextAccessor VariationContextAccessor
+@inject IPublishedContentCache PublishedContentCache
+@inject IDocumentNavigationQueryService DocumentNavigationQueryService
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@{
+    var rootContent = Umbraco.ContentAtRoot();
+    var siteSettings = rootContent.OfType<SiteSettings>().FirstOrDefault();
+    var navbarLogo = siteSettings?.NavbarLogo;
+    var selection = Model.Root().Children().Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
+
+}
+
+<div class="flex w-full justify-center shadow-md">
+    <div class="flex w-full max-w-[1200px] items-center justify-between p-2 md:w-3/4">
+        <img src="@navbarLogo?.Url()" alt="">
+        <button id="menu-btn" class="p-2 lg:hidden">
+            <img class="fa-solid fa-bars" src="" alt="">
+        </button>
+        
+        <nav class="hidden lg:flex gap-2">
+            @foreach (var item in selection) 
+            {
+                <a href="@item.Url(PublishedUrlProvider)" class="block p-2 hover:text-secondary">@item.Name</a>
+            }
+        </nav>
+    </div>
+</div>
+<nav id="menu" class="bg-primary hidden flex-col gap-2 bg-[#4F5955] p-2 text-white">
+    @foreach (var item in selection) 
+    {
+        <a href="@item.Url(PublishedUrlProvider)" class="block p-2 text-white hover:text-secondary">@item.Name</a>
+    }
+</nav>
+<!-- dropdown menu script -->
+<script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+    });
+</script>

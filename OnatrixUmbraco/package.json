@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  },
+  "name": "onatrix-umbraco",
+  "version": "1.0.0",
+  "scripts": {
+    "tw:watch": "npx @tailwindcss/cli -i ./wwwroot/css/main.css -o ./wwwroot/css/output.css --watch"
+  }
+}
