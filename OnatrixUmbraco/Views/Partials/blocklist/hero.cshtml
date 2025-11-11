@@ -1,0 +1,79 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Core.Models.PublishedContent
+@model BlockListItem
+
+@{
+    
+
+
+    var c = Model.Content;
+    var bg = c.Value<IPublishedContent>("background");
+    var header = c.Value<string>("header");
+    var paragraph = c.Value<string>("paragraph");
+
+    //blocklist for button
+    var btnBlocks = c.Value<IEnumerable<BlockListItem>>("buttons");
+
+    var strong = c.Value<string>("strong");
+    var h2 = c.Value<string>("h2");
+    var ctaItalic = c.Value<string>("ctaItalic");
+    var ctaParagraph = c.Value<string>("ctaParagraph");
+    var ceoSignature = c.Value<IPublishedContent>("ceoSignature");
+    var imageFoot = c.Value<string>("imageFoot");
+
+
+
+}
+
+
+<section id="hero" class="relative">
+    <div style="background-image: url(@bg?.Url()" class="w-screen h-[300px] bg-cover bg-top z-0 flex justify-center">
+                <!-- <div class="w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-center"> -->
+                    <div class="w-3/4 max-w-[1200px] mt-6">
+                        <h1 class="my-1 text-2xl md:text-2xl font-bold w-50">@header</h1>
+                        <p class="my-1 text-sm font-light w-50">@paragraph</p>
+                        @if(btnBlocks?.Any() == true)
+                        {
+                            foreach (var block in btnBlocks)
+                            {
+                                @await Html.PartialAsync("BlockList/" + block.Content.ContentType.Alias, block)
+                            }
+            
+                        }
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <div id="about-info" class="flex justify-center flex-col items-center">
+                <div class="w-3/4 max-w-[1200px] relative flex flex-col items-center justify-start md:items-start xl-justify-start">
+                    <div class="w-full flex flex-col gap-4 mt-4 lg:w-2/4">
+                        <strong class="text-md text-[#D9C3A9]">@strong</strong>
+                        <h2 class="text-xl font-bold">@h2</h2>
+                        <p class="italic text-md font-light">@ctaItalic</p>
+                        <p class="text-sm font-light">@ctaParagraph</p>
+                        <img class="max-w-40 aspect-auto" src="@ceoSignature?.Url()" alt="">
+                        <p>@imageFoot</p>
+                    </div>
+    
+                    <div class="bg-white lg:absolute bottom-[15%] left-[55%] mt-8 w-full shadow-lg lg:w-[40%]">
+                        <div class="bg-[#4F5955] p-2">
+                            <h3 class="font-bold text-lg text-[#F2EDDC] "> Request a call back</h3>
+                        </div>
+                        <div class="top-8 p-4 flex flex-col gap-4">
+                            <p class="italic text-sm font-light">Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat</p>
+                            <input class="border border-[#d1d1d1] p-2 w-full" type="text" placeholder="Name">
+                            <input class="border border-[#d1d1d1] p-2 w-full" type="text" placeholder="Email address">
+                            <input class="border border-[#d1d1d1] p-2 w-full" type="text" placeholder="Phone">
+                            <select id="service" name="service" class="border border-[#d1d1d1] p-2 w-full text-gray-500">
+                                <option value="design">Financial consulting</option>
+                                <option value="development">Investment Planning</option>
+                                <option value="marketing">Tax Advisory</option>
+                            </select>
+                            <button class="w-full text-[#4F5955] bg-[#F2EDDC] font-bold text-sm p-2 rounded-sm">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>

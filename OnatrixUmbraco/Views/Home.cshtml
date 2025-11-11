@@ -1,6 +1,16 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
 @{
 	Layout = "MainLayout.cshtml";
+	var blocks = Model.Value<IEnumerable<BlockListItem>>("heroCta");
 }
-<h1 class="text-red">Hello</h1>
+
+
+@if (blocks?.Any() == true)
+{
+    foreach (var block in blocks)
+    {
+        @await Html.PartialAsync("BlockList/" + block.Content.ContentType.Alias, block)
+    }
+}
