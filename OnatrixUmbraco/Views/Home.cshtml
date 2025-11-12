@@ -2,15 +2,37 @@
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
 @{
-	Layout = "MainLayout.cshtml";
-	var blocks = Model.Value<IEnumerable<BlockListItem>>("heroCta");
+    Layout = "MainLayout.cshtml";
+    var heroblocks = Model.Value<IEnumerable<BlockListItem>>("heroCta");
+    var servicesBlocks = Model.Value<IEnumerable<BlockListItem>>("serviceSection");
+    var whyUsBlocks = Model.Value<IEnumerable<BlockListItem>>("whyUsSection"); 
 }
 
 
-@if (blocks?.Any() == true)
+@if (heroblocks?.Any() == true)
 {
-    foreach (var block in blocks)
+    foreach (var block in heroblocks)
     {
         @await Html.PartialAsync("BlockList/" + block.Content.ContentType.Alias, block)
     }
 }
+
+@if (servicesBlocks?.Any() == true)
+{
+    foreach (var block in servicesBlocks)
+    {
+            @await Html.PartialAsync("_Services", block)
+    }    
+}
+
+@if (whyUsBlocks?.Any() == true)
+{
+    foreach (var block in whyUsBlocks)
+    {
+        @await Html.PartialAsync("_WhyUs",block)    
+    }    
+}
+
+
+
+

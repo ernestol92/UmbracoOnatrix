@@ -1,0 +1,43 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@model BlockListItem
+
+@{
+    var c = Model.Content;
+    var strong = c.Value<string>("strong");
+    var header = c.Value<string>("header");
+    var cardBlock = c.Value<IEnumerable<BlockListItem>>("cardsList");
+
+}
+
+<section id="services">
+    <div class="bg-[#F7F7F7] flex flex-col justify-center items-center mt-8 mb-8 py-4 gap-4 w-screen">
+
+        <div class="w-3/4 max-w-[1200px] pt-8 pb-8 flex flex-col lg:items-center">
+            <strong class="text-md text-[#D9C3A9]">@strong</strong>
+            <h2 class="text-xl font-bold">@header</h2>
+        </div>
+            
+        @if (cardBlock?.Any() == true)
+        {
+            <div class="w-3/4 max-w-[1200px] h-full flex overflow-x-auto gap-6 snap-x snap-mandatory lg:hidden">
+                @foreach (var block in cardBlock)
+                {
+                        @await Html.PartialAsync("BlockList/servicecard" , block)
+                    
+                }    
+            </div>
+            <div class="w-3/4 max-w-[1200px] hidden lg:grid lg:grid-cols-3 justify-center place-items-center">
+                @foreach (var block in cardBlock)
+                {
+                        @await Html.PartialAsync("BlockList/servicecard", block)
+
+                }
+            </div>
+        }
+
+    </div>
+</section>
+
+@* +block.Content.ContentType.Alias *@

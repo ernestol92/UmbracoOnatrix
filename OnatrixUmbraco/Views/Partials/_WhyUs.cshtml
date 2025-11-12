@@ -1,0 +1,37 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@model BlockListItem
+
+@{
+    var c = Model.Content;
+    var primaryBg = c.Value<IPublishedContent>("primaryBg");
+    var darkHeader = c.Value<string>("darkHeader");
+    var lightHeader = c.Value<string>("lightHeader");
+    var paragraph = c.Value<string>("paragraph");
+    var buttons = c.Value<IEnumerable<BlockListItem>>("buttons");
+    var secondaryBg = c.Value<IPublishedContent>("background");
+}
+
+<section id="choose-us" class="w-screen">
+
+    <div class="w-full h-[350px] bg-cover bg-center bg-no-repeat flex justify-center" style="background-image:url(@primaryBg?.Url())">
+        <div class="w-3/4 max-w-[1200px] flex flex-col justify-center items-center">
+
+                <h2 class="text-xl font-bold">@darkHeader</h2>
+                <h2 class="text-xl font-bold text-[#D9C3A9]">@lightHeader</h2>
+                <p class="text-sm font-light text-[#535656] text-center my-4">@paragraph</p>
+                @if (buttons?.Any() == true) 
+                {
+                    foreach(var block in buttons)
+                    @await Html.PartialAsync("BlockList/button", block)
+                }
+
+        </div>
+    </div>
+    
+        
+        <div class="w-screen h-[300px] bg-cover bg-top" style="background-image:url(@secondaryBg?.Url())">
+    </div>
+
+</section>

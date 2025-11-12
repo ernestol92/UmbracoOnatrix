@@ -16,7 +16,7 @@
 
 }
 
-<div class="flex w-full justify-center shadow-md">
+<div class="flex w-screen justify-center shadow-md">
     <div class="flex w-full max-w-[1200px] items-center justify-between p-2 md:w-3/4">
         <img src="@navbarLogo?.Url()" alt="">
         <button id="menu-btn" class="p-2 lg:hidden">
@@ -31,7 +31,7 @@
         </nav>
     </div>
 </div>
-<nav id="menu" class="bg-primary hidden flex-col gap-2 bg-[#4F5955] p-2 text-white">
+<nav id="menu" class="bg-primary hidden flex-col gap-2 bg-[#4F5955] p-2 text-white px-8">
     @foreach (var item in selection) 
     {
         <a href="@item.Url(PublishedUrlProvider)" class="block p-2 text-white hover:text-secondary">@item.Name</a>

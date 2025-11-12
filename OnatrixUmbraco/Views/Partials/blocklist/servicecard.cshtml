@@ -1,0 +1,20 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Core.Models.PublishedContent
+@model BlockListItem
+
+@{
+    var c = Model.Content;
+    var cardHeader = c.Value<string>("cardHeader");
+    var cardImg = c.Value<IPublishedContent>("cardImg");
+    var cardText = c.Value<string>("cardText");
+}
+
+<div class="w-[250px] shadow-lg shrink-0 snap-start my-4">
+    <div class="w-full">
+        <h3 class="p-3">@cardHeader</h3>
+    </div>
+    <img class="w-full h-50 object-cover object-center" src="@cardImg?.Url()" alt="">
+    <p class="text-sm font-light p-2">@cardText</p>
+</div>
+
