@@ -1,5 +1,26 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<AboutUs>
 @{
-	Layout = null;
+    Layout = "MainLayout.cshtml";
+
+    var ceoblocks = Model.Value<IEnumerable<BlockListItem>>("ceo");
+    var review = Model.Value<IEnumerable<BlockListItem>>("review");
 }
+
+@if (ceoblocks?.Any() == true)
+{
+    foreach (var block in ceoblocks)
+    {
+        @await Html.PartialAsync("_Ceo", block)
+    }
+}
+
+@if (review?.Any() == true)
+{
+    foreach (var block in review)
+    {
+        @await Html.PartialAsync("_Review", block)
+    }
+}
+

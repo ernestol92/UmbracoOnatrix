@@ -79,7 +79,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "16.2.0+4eae48e")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("ctaItalic")]
-		public virtual string CtaItalic => this.Value<string>(_publishedValueFallback, "ctaItalic");
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CtaItalic => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "ctaItalic");
 
 		///<summary>
 		/// Paragraph
@@ -87,7 +87,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "16.2.0+4eae48e")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("ctaParagraph")]
-		public virtual string CtaParagraph => this.Value<string>(_publishedValueFallback, "ctaParagraph");
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CtaParagraph => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "ctaParagraph");
 
 		///<summary>
 		/// h2: main header for this section
@@ -119,7 +119,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "16.2.0+4eae48e")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("paragraph")]
-		public virtual string Paragraph => this.Value<string>(_publishedValueFallback, "paragraph");
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Paragraph => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "paragraph");
 
 		///<summary>
 		/// strong: a small header that describes what follows

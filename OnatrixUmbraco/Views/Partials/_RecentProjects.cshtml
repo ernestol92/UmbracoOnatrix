@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@model BlockListItem
+@{
+    var c = Model.Content;
+    var projectcardBlocks = c.Value<IEnumerable<BlockListItem>>("projectcardList");
+}
+
+<section id="recent projects" class="flex flex-col items-center w-screen">
+
+
+    <div class="w-full flex justify-center">
+        <div class="w-3/4 max-w-[1200px] flex flex-col">
+            <strong class="text-sm text-[#D9C3A9]">OUR PROJECTS</strong>
+            <h2 class="text-xl font-bold text-[#535656] mb-4">Recent projects</h2>
+        </div>
+    </div>
+
+
+    <div class="w-full flex justify-center">
+        <div id="project-container" class="w-3/4 h-[300px] lg:w-auto lg:max-w-full flex justify-start overflow-x-scroll overflow-y-hidden snap-mandatory snap-x gap-4">
+
+            @if (projectcardBlocks?.Any() == true)
+            {
+                foreach (var block in projectcardBlocks)
+                {
+                    @await Html.PartialAsync("BlockList/projectcard", block)    
+                }    
+            }
+
+        </div>
+
+    </div>
+</section>

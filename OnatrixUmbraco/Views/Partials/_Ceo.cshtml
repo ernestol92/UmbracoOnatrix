@@ -1,0 +1,29 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@model BlockListItem
+
+@{
+	var c = Model.Content;
+	var quote = c.Value<string>("quote");
+	var textSection = c.Value<string>("textSection");
+	var image = c.Value<IPublishedContent>("image");
+	var imageText = c.Value<string>("imageText");
+}
+
+<section id="Founder">
+    <div class="w-full h-auto flex items-center justify-center">
+        <div class="w-3/4 max-w-[1200px] flex flex-col justify-center items-center  my-8 lg:flex-row-reverse lg:items-start gap-10">
+            <div class="lg:w-2/4">
+                <div class="">
+                    <h3 class="text-center lg:text-start italic text-lg font-light text-[#535656]">@quote</h3>
+                    <p class="text-sm text-[#535656] pt-4 ">@textSection</p>
+                </div>
+            </div>
+            <div class="lg:w-2/4">
+                <img class="max-h-[550px]" src="@image?.Url()" alt="">
+                <p class="text-sm italic text-[#535656] pt-4 ">@imageText</p>
+            </div>
+        </div>
+    </div>
+</section>

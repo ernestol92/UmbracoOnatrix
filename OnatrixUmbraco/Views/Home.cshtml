@@ -3,9 +3,12 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
 @{
     Layout = "MainLayout.cshtml";
+
     var heroblocks = Model.Value<IEnumerable<BlockListItem>>("heroCta");
     var servicesBlocks = Model.Value<IEnumerable<BlockListItem>>("serviceSection");
-    var whyUsBlocks = Model.Value<IEnumerable<BlockListItem>>("whyUsSection"); 
+    var whyUsBlocks = Model.Value<IEnumerable<BlockListItem>>("whyUsSection");
+    var successBlocks = Model.Value<IEnumerable<BlockListItem>>("successSection");
+    var projectBlocks = Model.Value<IEnumerable<BlockListItem>>("recentProjects");
 }
 
 
@@ -32,6 +35,27 @@
         @await Html.PartialAsync("_WhyUs",block)    
     }    
 }
+
+@if (successBlocks?.Any() == true)
+{
+    foreach (var block in successBlocks)
+    {
+        @await Html.PartialAsync("_SuccessStory", block)
+        
+
+    }
+}
+
+@if (projectBlocks?.Any() == true)
+{
+    foreach (var block in projectBlocks)
+    {
+        @await Html.PartialAsync("_RecentProjects", block)
+
+
+    }
+}
+
 
 
 

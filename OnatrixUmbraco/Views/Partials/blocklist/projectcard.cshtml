@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Core.Models.PublishedContent
+@model BlockListItem
+
+@{
+    var c = Model.Content;
+    var bg = c.Value<IPublishedContent>("backgroundImage");
+    var cardHeader = c.Value<string>("cardHeader");
+    var subText = c.Value<string>("subText");
+}
+
+<div class="bg-cover bg-center w-[300px] aspect-square flex flex-col justify-end items-center snap-start" style="background-image:url(@bg?.Url())">
+    <div class="bg-[#4f5955b7] w-full h-[80px] flex flex-col p-3">
+        <h3 class="text-white font-medium">Annual Report for Juva Inc.</h3>
+        <p class="text-white font-light">Financial Services</p>
+    </div>
+</div>
