@@ -6,7 +6,11 @@
 
     var ceoblocks = Model.Value<IEnumerable<BlockListItem>>("ceo");
     var review = Model.Value<IEnumerable<BlockListItem>>("review");
+    var employees = Model.Value<IEnumerable<BlockListItem>>("employees");
+
 }
+@* copy this snippet for insertion of partial on other pages *@
+<partial name="Partials/_PageBanner" model="(IPageBanner)Model" /> 
 
 @if (ceoblocks?.Any() == true)
 {
@@ -16,6 +20,7 @@
     }
 }
 
+
 @if (review?.Any() == true)
 {
     foreach (var block in review)
@@ -23,4 +28,15 @@
         @await Html.PartialAsync("_Review", block)
     }
 }
+
+@if (employees?.Any() == true)
+{
+    foreach (var block in employees)
+    {
+        @await Html.PartialAsync("_Employees", block)
+    }
+}
+
+
+<partial name="Partials/_NextProject"/>
 

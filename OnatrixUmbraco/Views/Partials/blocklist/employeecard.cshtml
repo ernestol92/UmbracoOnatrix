@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Core.Models.PublishedContent
+@model BlockListItem
+
+@{
+    var c = Model.Content;
+    var image = c.Value<IPublishedContent>("employeeImage");
+    var name = c.Value<string>("employeeName");
+    var role = c.Value<string>("employeeRole");
+}
+
+<div class="p-2">
+<div class="min-w-[300px] lg:min-w-full h-[400px] bg-[url('/media/brandon.png')] bg-cover bg-center flex flex-col justify-end items-center snap-start"
+style="background-image:url(@image?.Url())">
+    <div class="w-full bg-[#4f5955b7] h-[90px] flex flex-col p-3">
+        <h3 class="text-white font-medium">@name</h3>
+        <p class="text-white font-light">@role</p>
+    </div>
+</div>
+
+</div>
