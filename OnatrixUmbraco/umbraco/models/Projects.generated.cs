@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Projects</summary>
 	[PublishedModel("projects")]
-	public partial class Projects : PublishedContentModel
+	public partial class Projects : PublishedContentModel, IPageBanner
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,5 +48,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// page name
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "16.2.0+4eae48e")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageName")]
+		public virtual string PageName => global::Umbraco.Cms.Web.Common.PublishedModels.PageBanner.GetPageName(this, _publishedValueFallback);
 	}
 }

@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var c = (ServiceDetailRte)Model.Content;
+}
+
+<div class="prose">
+    <img src="@c.Image?.Url()" class="w-full" />
+    @Html.Raw(c.Rte)
+    <img src="@c.Image2?.Url()" class="w-full" />
+    @Html.Raw(c.Rte2)
+</div>

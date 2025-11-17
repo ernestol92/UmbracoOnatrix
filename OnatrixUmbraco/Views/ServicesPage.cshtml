@@ -1,0 +1,10 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "MainLayout.cshtml";
+}
+<partial name="Partials/_PageBanner" model="(IPageBanner)Model" /> 
+<div class="bg-[#FFF]">
+	<partial name="Partials/_Services"/>
+</div>
+<partial name="Partials/_NextProject"/>

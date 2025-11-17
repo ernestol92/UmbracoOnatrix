@@ -20,13 +20,9 @@
     }
 }
 
-@if (servicesBlocks?.Any() == true)
-{
-    foreach (var block in servicesBlocks)
-    {
-            @await Html.PartialAsync("_Services", block)
-    }    
-}
+<div class="bg-[#f7f7f7]">
+    <partial name="Partials/_Services"/>
+</div>
 
 @if (whyUsBlocks?.Any() == true)
 {
